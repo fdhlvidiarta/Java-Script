@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh Penggunaan AJAX dan jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <button onclick="loadHalaman1()">Halaman 1</button>
+    <button onclick="loadHalaman2()">Halaman 2</button>
+
+    <div id="halaman1"></div>
+    <div id="halaman2"></div>
+    <!-- script -->
+    <script>
+      function loadHalaman1() {
+        $.ajax({
+          url: "halaman1.html", // URL halaman yang ingin dimuat
+          success: function (response) {
+            $("#halaman1").html(response); // Memuat konten halaman ke dalam div dengan id 'halaman1'
+          },
+        });
+      }
+
+      function loadHalaman2() {
+        $.ajax({
+          url: "halaman2.html", // URL halaman yang ingin dimuat
+          success: function (response) {
+            $("#halaman2").html(response); // Memuat konten halaman ke dalam div dengan id 'halaman2'
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jam Real Time</title>
+    <style>
+         body {
+            font-family: cursive;
+            color: black;
+            text-align: center;
+            padding-top: 50px;
+        }
+        #Tanggal_Jam {
+            font-size: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px #0099ff;
+            background-color: #029aff34;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="Tanggal_Jam"></div>
+    <!-- script js -->
+    <script>
+      function updateTime() {
+        var now = new Date();
+        var date = now.toLocaleDateString();
+        var time = now.toLocaleTimeString();
+        document.getElementById("Tanggal_Jam").innerHTML = date + " " + time;
+      }
+      // Panggil updateTime setiap detik
+      setInterval(updateTime, 1000);
+      // Memanggil updateTime sekali saat halaman dimuat untuk menampilkan waktu awal
+      updateTime();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download Progress Bar</title>
+    <style>
+      body {
+        font-family: "Lucida Console", Monaco, monospace;
+        color: #ddd;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .dialog-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: none;
+      }
+      .dialog-box {
+        background-color: #333;
+        color: #ddd;
+        width: 300px;
+        padding: 20px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid #ccc;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+      }
+      .dialog-box h2 {
+        margin-top: 0;
+        font-family: "Franklin Gothic Medium", Arial, sans-serif;
+      }
+      .progress-container {
+        width: 100%;
+        height: 30px;
+        background-color: #555;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+      .progress-bar {
+        width: 0;
+        height: 100%;
+        background-color: #4caf50;
+        transition: width 0.3s;
+      }
+      .progress-text {
+        line-height: 30px;
+        text-align: center;
+        color: #ddd;
+        font-size: 14px;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <button class="open-dialog">Download File</button>
+    <!-- Jendela dialog -->
+    <div class="dialog-overlay">
+      <div class="dialog-box">
+        <h2>Download Progress</h2>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="progress-text"></div>
+        <button class="dialog-button close-dialog">Cancel</button>
+      </div>
+    </div>
+    
+    <!-- Script -->
+    <script>
+      $(document).ready(function () {
+        // Menampilkan dialog saat dokumen siap
+        $(".open-dialog").click(function () {
+          $(".dialog-overlay").fadeIn();
+          simulateDownload(); // Memulai simulasi download saat dialog ditampilkan
+        });
+
+        // Menutup dialog saat tombol Close diklik
+        $(".close-dialog").click(function () {
+          $(".dialog-overlay").fadeOut();
+        });
+      });
+      // Fungsi untuk mensimulasikan download dengan progress
+      function simulateDownload() {
+        var progressBar = $(".progress-bar");
+        var progressText = $(".progress-text");
+
+        var progress = 0;
+        var interval = setInterval(function () {
+          progress += Math.random() * 10; // Menambah progress secara acak
+          if (progress > 100) progress = 100;
+          progressBar.width(progress + "%");
+          progressText.text("Downloading: " + Math.round(progress) + "%");
+
+          // Menutup dialog saat download selesai
+          if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(function () {
+              $(".dialog-overlay").fadeOut();
+              progressBar.width("0%");
+              progressText.text("");
+            }, 2000); // Menunggu 2 detik sebelum menutup dialog
+          }
+        }, 500); // Interval 0.5 detik untuk mengupdate progress
+      }
+    </script>
+  </body>
+</html>

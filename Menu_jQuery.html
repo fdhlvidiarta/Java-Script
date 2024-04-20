@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu dengan jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+         body {
+            font-family:  'Lucida Console', Monaco, monospace;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            border-radius: 2px solid #000000;
+        }
+        .menu-toggle {
+            text-align: center;
+            padding: 15px;
+            background-color: #474646;
+        }
+        .menu-toggle:hover {
+            color: #fffb00;
+        }
+        .menu li a {
+            display: block;
+            color: #ddd;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .menu li a:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-toggle">Menu</div>
+    
+    <!-- Menu -->
+    <ul class="menu" style="display: none;">
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Tentang</a></li>
+        <li><a href="#">Layanan</a></li>
+        <li><a href="#">Kontak</a></li>
+    </ul>
+     <!-- script -->
+     <script>
+        $(document).ready(function(){
+            $('.menu-toggle').click(function(){
+                $('.menu').slideToggle();
+            });
+        });
+    </script>
+</body>
+</html>
